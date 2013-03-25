@@ -34,32 +34,37 @@ public class Turma {
     // Quantidade de Alunos aprovados
     public int quandidadeAlunosAprovados(){
         int quant = 0;
-        int x;
-        for(x = 0; x<= alunos.size(); x ++){
-            if (alunos.get(x).media() >= 7){
+       
+        for (Aluno alu: alunos){
+            if (alu.media() >= 7) {
                 quant++;
             }
         }
+        
         return quant;
     }
     public int quantidadeAlunosReprovados(){
+    
          return quantidadeAlunos() - quandidadeAlunosAprovados();
+         
     }
     public float percentualAlunosAprovados(){
-        return quantidadeAlunos()/100*quandidadeAlunosAprovados();
+        return (100*quandidadeAlunosAprovados()/quantidadeAlunos());
     }
     public float percenturalAlunosReprovados(){
-        return quantidadeAlunos()/100*quantidadeAlunosReprovados();
+       
+            return (100*quantidadeAlunosReprovados()/ quantidadeAlunos());
+        
     }
     public float mediaGeral(){
         float media =0;
         
-        if (alunos.size()>0){
-            for(Aluno al:alunos){
-                media += al.media();
+        if (quantidadeAlunos()>0){
+            for(Aluno alu:alunos){
+                media += alu.media();
             }
             
-        }return media/alunos.size();
+        }return media/quantidadeAlunos();
     }
     public void matricula(Aluno aluno){
         alunos.add(aluno);
@@ -68,6 +73,17 @@ public class Turma {
     public void cancelarMatricula(Aluno aluno){
         alunos.remove(aluno);
         aluno.setTurma(null);
+    }
+
+    public ArrayList<Aluno> getAlunos() {
+        return alunos;
+    }
+    public void alunosCadastrados(){
+        System.out.println("Alunos Cadastrados");
+        int x =0;
+        for (Aluno alu: alunos){
+            System.out.println(alu.getRa()+ " - " + alu.getNome()+" - Media: "+alu.media());
+        }
     }
 }
 
